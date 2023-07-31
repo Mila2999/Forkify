@@ -2,7 +2,7 @@ import View from './View.js';
 
 // import icons from '../img/icons.svg'; //Parsel 1
 import icons from 'url:../../img/icons.svg'; //Parsel 2
-import { Fractional } from 'fractional';
+import { Fraction } from 'fractional';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -12,9 +12,17 @@ class RecipeView extends View {
   addHandlerRecipe(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings');
+      if (!btn) return;
+      const { updateTo } = btn.dataset;
+      if (+updateTo > 0) handler(+updateTo);
+    });
+  }
 
   _generateMarkup() {
-    console.log(this._data);
+    // console.log(this._data);
     return `
   <figure class="recipe__fig">
     <img crossorigin="anonymous" src="${this._data.image}" alt="${
@@ -45,12 +53,16 @@ class RecipeView extends View {
       <span class="recipe__info-text">servings</span>
   
       <div class="recipe__info-buttons">
-        <button class="btn--tiny btn--increase-servings">
+        <button class="btn--tiny btn--update-servings" data-update-to="${
+          this._data.servings - 1
+        }">
           <svg>
             // <use href="${icons}#icon-minus-circle"></use>
           </svg>
         </button>
-        <button class="btn--tiny btn--increase-servings">
+        <button class="btn--tiny btn--update-servings" data-update-to="${
+          this._data.servings + 1
+        }">
           <svg>
             <use href="${icons}#icon-plus-circle"></use>
           </svg>
