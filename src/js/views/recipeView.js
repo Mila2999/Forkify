@@ -103,7 +103,7 @@ class RecipeView extends View {
     >
       <span>Directions</span>
       <svg class="search__icon">
-        <use hrefcrossorigin="anonymous" ="img/icons.svg'#icon-arrow-right"></use>
+        <use crossorigin="anonymous" href="img/icons.svg'#icon-arrow-right"></use>
       </svg>
     </a>
   </div>
