@@ -83,7 +83,7 @@ class RecipeView extends View {
     <button class="btn--round btn--bookmark
     ">
       <svg class="">
-        <use href="${icons}#icon-bookmark ${
+        <use href="${icons}#icon-bookmark${
       this._data.bookmarked ? '-fill' : ''
     }"></use>
       </svg>
