@@ -1,4 +1,4 @@
-// import { async } from 'regenerator-runtime';
+import { async } from 'regenerator-runtime';
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
@@ -13,6 +13,7 @@ export const state = {
   },
   bookmarks: [],
 };
+
 const createRecipeObject = function (data) {
   const { recipe } = data.data;
   return {
@@ -27,7 +28,7 @@ const createRecipeObject = function (data) {
     ...(recipe.key && { key: recipe.key }),
   };
 };
-// Change the object
+    // Change the object
 export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
@@ -44,6 +45,7 @@ export const loadRecipe = async function (id) {
     throw err;
   }
 };
+
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
@@ -74,6 +76,7 @@ export const getSearchResultPage = function (page = state.search.page) {
 
   return state.search.results.slice(start, end);
 };
+
 export const updateServings = function (newServings) {
   state.recipe.ingredients.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
@@ -103,10 +106,12 @@ export const deleteBookmark = function (id) {
   if (id === state.recipe.id) state.recipe.bookmarked = false;
   presistBookmarks();
 };
+
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
 };
+
 init();
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');

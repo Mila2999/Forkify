@@ -1,5 +1,6 @@
 import View from './View';
 import icons from 'url:../../img/icons.svg';
+
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
@@ -67,6 +68,8 @@ class PaginationView extends View {
           </button>
         `;
     }
+    // Page 1, and there are NO other pages
   }
 }
+
 export default new PaginationView();

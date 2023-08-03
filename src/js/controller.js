@@ -11,6 +11,7 @@ import View from './views/View.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
+
 // if (module.hot) {
 //   module.hot.accept();
 // }
@@ -60,6 +61,7 @@ const controlSearchResults = async function () {
     console.log(err);
   }
 };
+
 const controlPagination = function (goToPage) {
   // 1) Render NEW results
   resultsView.render(model.getSearchResultPage(goToPage));
@@ -88,6 +90,7 @@ const controlAddBookmark = function () {
   // 3) Render bookmarks
   bookmarksView.render(model.state.bookmarks);
 };
+
 const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
@@ -95,17 +98,20 @@ const controlAddRecipe = async function (newRecipe) {
   try {
     // Show loading spiner
     addRecipeView.renderSpiner();
+
     //Upload the new drecipe data
     await model.uploadRecipe(newRecipe);
     console.log(model.state.recipe);
+
     // Render recipe
     recipeView.render(model.state.recipe);
 
     // Display success mesage
     addRecipeView.renderMessage();
+
     // Render bookmark view
     bookmarksView.render(model.state.bookmarks);
-    // Render bookmarks view
+
     // Change ID in the URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
 
@@ -118,6 +124,7 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderError(err.message);
   }
 };
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRecipe(controlRecipes);

@@ -1,5 +1,4 @@
 import View from './View.js';
-
 // import icons from '../img/icons.svg'; //Parsel 1
 import icons from 'url:../../img/icons.svg'; //Parsel 2
 import { Fractional } from 'fractional';
@@ -12,6 +11,7 @@ class RecipeView extends View {
   addHandlerRecipe(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
+
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--update-servings');
@@ -20,6 +20,7 @@ class RecipeView extends View {
       if (+updateTo > 0) handler(+updateTo);
     });
   }
+
   addHandlerBookMark(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--bookmark');
@@ -44,7 +45,7 @@ class RecipeView extends View {
     <div class="recipe__info">
       <svg class="recipe__info-icon">
         <use href="${icons}#icon-clock"></use>
-  >
+      </svg>
       <span class="recipe__info-data recipe__info-data--minutes">${
         this._data.cookingTime
       }</span>
@@ -76,7 +77,6 @@ class RecipeView extends View {
         </button>
       </div>
     </div>
-  
     
       <div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">
         <svg>
