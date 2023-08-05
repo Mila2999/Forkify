@@ -2,9 +2,10 @@
   "name": "forkify",
   "version": "1.0.0",
   "description": "Recipe application",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Mila Savonik",
   "license": "ISC",
@@ -16,7 +17,7 @@
   },
   "dependencies": {
     "core-js": "^3.31.1",
-    "fractional": "^1.0.0",
+    "fraction.js": "^4.2.0",
     "regenerator-runtime": "^0.13.11"
   }
 }
